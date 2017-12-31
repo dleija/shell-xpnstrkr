@@ -1,0 +1,108 @@
+ls Dropbox/Apps/XpenseTracker | sed -n '/^20[12][0-9]\.[1-2][1-9]\.[A-Z][a-z][a-z]/p' 
+
+o 
+rules
+ 0 =< t =< 1
+ 1 =< o =< 9
+
+condition     action      result
+
+y                         y=y              
+t=0                       t=t
+1 <= o < 9    incr o      o=o+1
+
+y                         y=y-1              
+t=0                       t=1
+o=1           decr o      o=2
+
+y                         y=y
+t=0                       t=1
+o=9            incr o     o=0
+
+y                         y=y
+t=0                       t=t
+1 < o <= 9     decr o     o=o-1
+
+y                         y=y
+t=1                       t=t
+o=0 or 1      incr o      o=o+1
+
+y                         y=y
+t=1                       t=0
+o=0            decr o     o=9
+
+condition     action      result
+
+y                         y=y              
+t=0                       t=t
+1 <= o < 9    incr o      o=o+1
+
+y                         y=y
+t=0                       t=1
+o=9            incr o     o=0
+
+y                         y=y
+t=1                       t=t
+o=0 or 1      incr o      o=o+1
+
+y                         y=y+1              
+t=1                       t=0
+o=2           incr o      o=1
+
+incr o when  : condistion  retults
+               y.0[1-8]    y.(0)(o+1)
+               y.09        y.(1)(0)
+               y.1[01]     y.(1)(o+1)
+               y.12        y+1.(0)(1)
+
+
+
+y    t o
+y1   0 1 -----
+y1   0 2 
+y1   0 3
+y1   0 4
+y1   0 5
+y1   0 6
+y1   0 7
+y1   0 8 
+y1   0 9 -----
+
+y1   1 0 -----
+y1   1 1 
+y1   1 2 -----
+
+
+y2   0 1 
+y2   0 2
+y2   0 3
+y2   0 4
+y2   0 5
+y2   0 6
+y2   0 7
+y2   0 8
+y2   0 9
+
+y2   1 0
+y2   1 1
+y2   1 2
+
+
+y3   0 1
+y3   0 2
+y3   0 3
+y3   0 4
+y3   0 5
+y3   0 6
+y3   0 7
+y3   0 8
+y3   0 9
+
+y3   1 0
+y3   1 1
+y3   1 2
+
+
+
+
+
